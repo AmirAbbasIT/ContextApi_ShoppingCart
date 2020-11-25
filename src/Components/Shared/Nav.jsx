@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import {cartContext}from './../../cart';
 export const Nav = () => {
 
-    const {count}=useContext(cartContext);
+    const {cart}=useContext(cartContext);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-info">
@@ -31,7 +31,7 @@ export const Nav = () => {
             <li className="nav-item">
               <NavLink className="nav-link cart-link" to="/Cart">
                 Cart
-                <span className="badge badge-pill badge-warning cart-badge">{count}</span>
+                <span className="badge badge-pill badge-warning cart-badge">{cart.count}</span>
               </NavLink>
             </li>
           </ul>

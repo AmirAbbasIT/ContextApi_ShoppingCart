@@ -1,11 +1,27 @@
-import React,{useContext} from 'react'
+import React,{useContext,useReducer} from 'react'
 import {cartContext} from '../../cart';
+import CartSummary from '../CartSummary';
+import CartItem from './CartItem';
 const Cart = () => {
-    const {cart,count}=useContext(cartContext);
-    console.log(cart,count);
+    const {cart,dispatch}=useContext(cartContext);
+    console.log(cart);
     return (
-        <div>
-            <h1>Products in Cart</h1>
+        <div className="row">
+
+            <div className="col-md-8">
+                <div className="table table-borderless">
+                   
+                    <tbody>
+                    {cart.cart.map(item=>(<CartItem product={item} />))}
+                    </tbody>
+                </div>
+            
+            </div>
+
+
+            <div className="col-md-4">
+            <CartSummary/>
+            </div>
         </div>
     )
 }

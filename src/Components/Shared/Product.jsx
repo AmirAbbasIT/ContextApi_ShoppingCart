@@ -1,7 +1,18 @@
-import React from "react";
+import React, {useContext} from "react";
+import {cartContext} from '../../cart';
 
 const Product = (props) => {
+  const {cart,dispatch}=useContext(cartContext);
   const { product } = props;
+
+  const AddToCart=(product)=>{
+    const index=cart.cart.indexOf(product);
+    if(index===-1)
+    {
+      product.quantity=1;
+      dispatch({type:"AddToCart",payload:product})
+    }
+  }
   return (
     <>
       <div className="card col-md-3 product-card">
@@ -11,7 +22,7 @@ const Product = (props) => {
           <p className="card-text">{product.price}$</p>
         </div>
         <div className="card-footer">
-          <button className="btn btn-warning btn-block text-white">add to Cart</button>
+          <button className="btn btn-warning btn-block text-white" onClick={()=>{AddToCart(product)}}>add to Cart</button>
         </div>
       </div>
     </>
